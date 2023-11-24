@@ -208,6 +208,8 @@ func TestContentDirectoryBrowseDirectChildren(t *testing.T) {
 		require.Contains(t, string(body), "/r/subdir/video.mp4")
 		require.Contains(t, string(body), "/r/subdir/video.srt")
 
+		// ensure we advertise the correct mime type
+		require.Contains(t, string(body), "application/x-subrip")
 	}
 
 	// Then a subdirectory with subtitles separately (subdir2)
@@ -238,6 +240,8 @@ func TestContentDirectoryBrowseDirectChildren(t *testing.T) {
 		require.Contains(t, string(body), "/r/subdir2/video.mp4")
 		require.Contains(t, string(body), "/r/subdir2/Subs/video.srt")
 
+		// ensure we advertise the correct mime type
+		require.Contains(t, string(body), "application/x-subrip")
 	}
 
 	// Then a subdirectory with subtitles in Subs/*.{idx,sub} (subdir3)
@@ -269,5 +273,7 @@ func TestContentDirectoryBrowseDirectChildren(t *testing.T) {
 		require.Contains(t, string(body), "/r/subdir3/Subs/video.idx")
 		require.Contains(t, string(body), "/r/subdir3/Subs/video.sub")
 
+		// ensure we advertise the correct mime type
+		require.Contains(t, string(body), "text/vnd.dvb.subtitle")
 	}
 }
